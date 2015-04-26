@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/common.css}"/>
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/main.css}"/>
+<script type="text/javascript" src="~" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+	<div th:include="common/common :: header"></div>
+	<div class="container clearfix">
+		<div th:include="common/common :: sidebar-wrap"></div>
+		<!--/sidebar-->
+		<div class="main-wrap">
+
+			<div th:include="common/common :: result-wrap1"></div>
+			<div class="result-wrap">
+				<div class="result-title">
+					<h1>基本信息</h1>
+				</div>
+				<div class="result-content">
+					<div class="short-wrap">
+						<form action="~" method="post" th:action="@{/store/update}"
+							enctype="multipart/form-data">
+							<input type="hidden" name = "id" th:value="${store.id}"/>
+							<label>店名:</label><input type="text" name="name" id="name" th:value="${store.name}"/><br />
+							<label>联系方式:</label><input type="text" name="phone_number" id="phone_number" th:value="${store.phone_number}"/><br/>
+							<label>简述：</label><textarea rows="5" cols="50" name="info" id = "info" th:text="${store.info}"></textarea><br />
+							<label>分类:</label>
+							<div class="categories">
+								<span th:if="${categories != null}"> <span
+									th:each="c :${categories}"> <input type="radio"
+										name="cid" id="cid" th:value="${c.id}" /><span
+										th:text="${c.name}"></span>&nbsp;&nbsp;
+								</span>
+								</span>
+							</div>
+							<label>商店图片：</label><input type="file" name="picture" id="picture" /><br />
+							<br /> <input type="submit" value="提交" /> &nbsp;&nbsp;<input
+								type="reset" value="重置" />
+						</form>
+					</div>
+				</div>
+			</div>
+			<div th:include="common/common :: result-wrap3"></div>
+		</div>
+		<!--/main-->
+	</div>
+</body>
+</html>

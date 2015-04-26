@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/common.css}"/>
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/main.css}"/>
+<script type="text/javascript" src="~" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+	<div th:include="common/common :: header"></div>
+	<div class="container clearfix">
+		<div th:include="common/common :: sidebar-wrap"></div>
+		<!--/sidebar-->
+		<div class="main-wrap">
+
+			<div th:include="common/common :: result-wrap1"></div>
+			<div class="result-wrap">
+				<div class="result-title">
+					<h1>基本信息</h1>
+				</div>
+				<div class="result-content">
+					<div class="short-wrap">
+					<form action="~" th:action="@{/category/update}" method="post">
+					<input type="hidden" th:value="${category.id}" name="id"/>
+					<label>分类名:</label><input type="text" name = "name" id = "name" th:value="${category.name}"/><br />
+					<label>简述：</label><textarea rows="5" cols="50" name="info" th:text="${category.info}"></textarea><br />
+					<input type="submit" value="提交"/> &nbsp;&nbsp;<input type="reset" value="重置" />
+					</form>
+					</div>
+				</div>
+			</div>
+			<div th:include="common/common :: result-wrap3"></div>
+		</div>
+		<!--/main-->
+	</div>
+</body>
+</html>

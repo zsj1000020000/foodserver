@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/common.css}"/>
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/main.css}"/>
+<script type="text/javascript" src="~" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+	<div th:include="common/common :: header"></div>
+	<div class="container clearfix">
+		<div th:include="common/common :: sidebar-wrap"></div>
+		<!--/sidebar-->
+		<div class="main-wrap">
+
+			<div th:include="common/common :: result-wrap1"></div>
+			<div class="result-wrap">
+				<div class="result-title">
+					<h1>基本信息</h1>
+				</div>
+				<div class="result-content">
+					<div class="short-wrap">
+					<form action="~" th:action="@{/system/update}" method="post">
+					<span th:if="${info != null}">
+						<input type="hidden" name="id" th:value="${info.id}" />
+						<label>操作系统:</label><input type="text" name = "operate_system" id = "operate_system" th:value="${info.operate_system}"/><br />
+						<label>服务器:</label><input type="text" name = "server" id = "server" th:value="${info.server}"/><br />
+						<label>版本:</label><input type="text" name = "version" id = "version" th:value="${info.version}"/><br />
+						<label>数据库:</label><input type="text" name = "db" id = "db" th:value="${info.db}"/><br />
+						<label>host:</label><input type="text" name = "host" id = "host" th:value="${info.host}"/><br />
+					</span>
+					<span th:if="${info == null}">
+						<input type="hidden" name="id"  />
+						<label>操作系统:</label><input type="text" name = "operate_system" id = "operate_system" /><br />
+						<label>服务器:</label><input type="text" name = "server" id = "server" /><br />
+						<label>版本:</label><input type="text" name = "version" id = "version" /><br />
+						<label>数据库:</label><input type="text" name = "db" id = "db" /><br />
+						<label>host:</label><input type="text" name = "host" id = "host" /><br />
+					</span>
+					<input type="submit" value="更新"/> &nbsp;&nbsp;<input type="reset" value="重置" />
+					</form>
+					</div>
+				</div>
+			</div>
+			<div th:include="common/common :: result-wrap3"></div>
+		</div>
+		<!--/main-->
+	</div>
+</body>
+</html>

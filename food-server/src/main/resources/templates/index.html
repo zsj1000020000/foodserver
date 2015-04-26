@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+    <title>后台管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/libs/modernizr.min.js"></script>
+</head>
+<body>
+ <div th:include="common/common :: header"></div>
+<div class="container clearfix">
+   <div th:include="common/common :: sidebar-wrap"></div>
+    <!--/sidebar-->
+    <div class="main-wrap">
+        
+        <div th:include="common/common :: result-wrap1"></div>
+        <div th:include="common/common :: result-wrap2"></div>
+        <div th:include="common/common :: result-wrap3"></div>
+    </div>
+    <!--/main-->
+</div>
+</body>
+</html>

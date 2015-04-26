@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/common.css}"/>
+<link rel="stylesheet" type="text/css" href="~" th:href="@{/css/main.css}"/>
+<script type="text/javascript" src="~" th:src="@{/js/libs/modernizr.min.js}"></script>
+</head>
+<body>
+	<div th:include="common/common :: header"></div>
+	<div class="container clearfix">
+		<div th:include="common/common :: sidebar-wrap"></div>
+		<!--/sidebar-->
+		<div class="main-wrap">
+
+			<div th:include="common/common :: result-wrap1"></div>
+			<div class="result-wrap">
+				<div class="result-title">
+					<h1>基本信息</h1>
+				</div>
+				<table class="result-tab">
+					<tr>
+						<th>id</th>
+						<th>店名</th>
+						<th>联系方式</th>
+						<th>简述</th>		
+						<th>操作</th>
+					</tr>
+					<tr th:each="store : ${stores}">
+
+						<td th:text="${store.id}"></td>
+						<td th:text="${store.name}"></td>
+						<td th:text="${store.phone_number}"></td>
+						<td th:text="${store.info}"></td>						
+						<td><a class="link-update" href="~" th:href="@{/food/add(sid=${store.id})}">添加菜单</a> <a
+							class="link-del" href="~" th:href="@{/food/list(sid=${store.id})}">菜单列表</a></td>
+					</tr>
+
+				</table>
+				
+				<div class="list-page">
+				<span>共<span th:text="${pageCount}"></span>页</span>
+					<span> <a href="~" th:href="@{/food/store_list(page=1)}">首页</a>
+					</span> <span th:if="${currentPage} > 5"> <a href="~"
+						th:href="@{/food/store_list(page=${currentPage - 5})}">上5页</a>
+					</span> <span th:if="${currentPage} > 1"> <a href="~"
+						th:href="@{/food/store_list(page=${currentPage - 1})}">上1页</a>
+					</span> <span th:each="pageNo : ${pages}"> <span
+						th:if="${pageNo} == ${currentPage}"> <a href="~"
+							th:href="@{/food/store_list(page=${pageNo})}" class="current"><span
+								th:text="${pageNo}"></span></a>
+					</span> <span th:if="${pageNo} != ${currentPage}"> <a href="~"
+							th:href="@{/food/store_list(page=${pageNo})}"><span
+								th:text="${pageNo}"></span></a>
+					</span>
+					</span> <span th:if="${currentPage} lt ${pageCount}"> <a
+						href="~" th:href="@{/food/store_list(page=${currentPage + 1})}">下1页</a>
+					</span> <span th:if="${currentPage} le ${pageCount - 5}"> <a
+						href="~" th:href="@{/food/store_list(page=${currentPage + 5})}">下5页</a>
+					</span> <span> <a href="~"
+						th:href="@{/food/store_list(page=${pageCount})}">尾页</a>
+					</span>
+				</div>
+			</div>
+			<div th:include="common/common :: result-wrap3"></div>
+		</div>
+		<!--/main-->
+	</div>
+</body>
+</html>
