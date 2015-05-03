@@ -11,6 +11,7 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -51,17 +52,19 @@ public class FoodServiceImple implements FoodService {
 	@Override
 	public List<Food> getFoods(final Integer stroreId, int page ,int size) {
 		
+		Sort sort = new Sort(Sort.Direction.DESC,"id");
 		List<Food> foods = foodRepository.findAll(new Specification<Food>() {
-
+			
 			@Override
 			public Predicate toPredicate(Root<Food> root,
 					CriteriaQuery<?> query, CriteriaBuilder cb) {
+				
 				Path<Object> store_id = root.get("store_id");
 				query.where(cb.equal(store_id, stroreId));
 				return null;
 			}			
 			
-		},new PageRequest(page, size)).getContent();
+		},new PageRequest(page, size,sort)).getContent();
 		return foods;
 	}
 

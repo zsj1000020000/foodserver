@@ -18,5 +18,8 @@ public interface FoodRepository extends PagingAndSortingRepository<Food, Integer
 
 	@Query("select f from Food f where f.updateTime >:date and f.store_id=:sid")
 	public List<Food> getFoods(@Param("date")Date date,@Param("sid")Integer sid);
+	
+	
+	
 
 }
